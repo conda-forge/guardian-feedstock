@@ -10,7 +10,7 @@ source:
   sha256: cc89b546eeb775924cd98e411c19758c94ec129bb303517b957733d416d84d18
 
 build:
-  number: 0
+  number: 1
   skip: true  # [win]
   script: "{{ PYTHON }} -m pip install . -vv"
 
@@ -21,7 +21,7 @@ requirements:
     - setuptools
   run:
     - gpstime
-    - matplotlib
+    - matplotlib-base
     - networkx
     - numpy
     - pcaspy
