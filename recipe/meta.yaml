@@ -22,7 +22,7 @@ build:
     - guardmedm = guardian.medm.__main__:main
     - guardutil = guardian.guardutil:main
     - guardctrl = guardctrl.__main__:main
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
