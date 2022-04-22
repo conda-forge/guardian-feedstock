@@ -47,12 +47,20 @@ requirements:
 
 test:
   requires:
-    - bash >=4.0
+    - bash >=4.0  # [linux]
     - ezca
+    - pip
   source_files:
-    - test/
+    - test/  # [linux]
   commands:
-    - bash test/guardian-test
+    # check requirements
+    - python -m pip check
+    # run tests
+    # py<310 because of https://github.com/paulscherrerinstitute/pcaspy/issues/76
+    - (cd test; bash -e guardian-test)  # [linux and py<310]
+    # sanity check entry points
+    - guardian --help
+    - guardutil --help
 
 about:
   home: https://git.ligo.org/cds/guardian/
