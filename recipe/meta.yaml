@@ -32,6 +32,7 @@ requirements:
     - setuptools
   run:
     - gpstime
+    - ligo-medm
     - matplotlib-base
     - networkx
     - numpy
