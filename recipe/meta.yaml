@@ -22,7 +22,7 @@ build:
     - guardmedm = guardian.medm.__main__:main
     - guardutil = guardian.guardutil:main
     - guardctrl = guardctrl.__main__:main
-  number: 1
+  number: 2
   script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
@@ -32,6 +32,7 @@ requirements:
     - setuptools
   run:
     - gpstime
+    - ligo-medm  # [linux and x86_64]
     - matplotlib-base
     - networkx
     - numpy
