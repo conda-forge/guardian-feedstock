@@ -1,13 +1,13 @@
 {% set name = "guardian" %}
-{% set version = "1.4.4" %}
+{% set version = "1.5.0" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://git.ligo.org/cds/{{ name }}/-/archive/{{ version }}/{{ name }}-{{ version }}.tar.gz
-  sha256: e17db721090203321f1ce83e9af7632c5b4a3229bbb4270bb285bc9fc502ba88
+  url: https://git.ligo.org/cds/software/{{ name }}/-/archive/{{ version }}/{{ name }}-{{ version }}.tar.gz
+  sha256: 4f55b477a852abf2c8db9da88012ab2b273d5fdecf60d3e1eaa64c9f0735626e
   patches:
     # replace most of the scripts with entry points
     - entry-points.patch
@@ -60,7 +60,7 @@ about:
   license_file: COPYING-GPL-3
   summary: aLIGO Guardian
   description: |
-    Design by and for the Advanced LIGO project, Guardian is a flexible,
+    Designed by and for the Advanced LIGO project, Guardian is a flexible,
     modular, distributed, hierarchical, state machine automation platform.
     It is not specific to aLIGO, though; it should be useful for an large
     or small experiment that could benefit from state-machine supervisory
