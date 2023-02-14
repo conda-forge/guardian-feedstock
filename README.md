@@ -13,7 +13,7 @@ Development: https://git.ligo.org/cds/guardian/
 
 Documentation: https://docs.ligo.org/cds/guardian/
 
-Design by and for the Advanced LIGO project, Guardian is a flexible,
+Designed by and for the Advanced LIGO project, Guardian is a flexible,
 modular, distributed, hierarchical, state machine automation platform.
 It is not specific to aLIGO, though; it should be useful for an large
 or small experiment that could benefit from state-machine supervisory
