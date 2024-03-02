@@ -1,5 +1,5 @@
 {% set name = "guardian" %}
-{% set version = "1.5.1" %}
+{% set version = "1.5.2" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://git.ligo.org/cds/software/{{ name }}/-/archive/{{ version }}/{{ name }}-{{ version }}.tar.gz
-  sha256: d71dd41087147c887c0d4bd665597dc30223506871b9c99ddf0416bc618ca2bb
+  sha256: fa1b62b9c64249e6735c9dfbe905cfbee81058aa37b149048df657d28ecd30ac 
   patches:
     # replace most of the scripts with entry points
     - entry-points.patch
