@@ -22,7 +22,8 @@ source:
       else: guardlog-prefix.patch
 
 build:
-  number: 0
+  noarch: python
+  number: 1
   python:
     entry_points:
       - guardian = guardian.__main__:main
@@ -34,7 +35,7 @@ build:
 requirements:
   host:
     - pip
-    - python
+    - python ${{ python_min }}.*
     - setuptools
   run:
     - if: unix
@@ -48,7 +49,7 @@ requirements:
     - pcaspy
     - pydotplus
     - pyepics
-    - python
+    - python >=${{ python_min }}
     - python-dateutil
     - setproctitle
     - termcolor
@@ -59,7 +60,11 @@ tests:
         - guardctrl
         - guardian
       pip_check: true
-  - script:
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+    script:
       - guardian --help
       - guardutil --help
 
