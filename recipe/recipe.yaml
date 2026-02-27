@@ -1,0 +1,107 @@
+schema_version: 1
+
+context:
+  name: guardian
+  version: 1.5.3
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://git.ligo.org/cds/software/${{ name }}/-/archive/${{ version }}/${{ name }}-${{ version }}.tar.gz
+  sha256: 86d4f9d61e784fe08cba71f9b47ca3c3d19828ddf32c719b4708940c1aebe011 
+  patches:
+    # replace most of the scripts with entry points
+    - entry-points.patch
+    # handle guardlog per platform
+    - if: win
+      # don't install guardlog at all on windows (it won't work)
+      then: no-guardlog.patch
+      # insert the anaconda1 prefix placeholder into the guardlog script
+      else: guardlog-prefix.patch
+
+build:
+  noarch: python
+  number: 2
+  python:
+    entry_points:
+      - guardian = guardian.__main__:main
+      - guardmedm = guardian.medm.__main__:main
+      - guardutil = guardian.guardutil:main
+      - guardctrl = guardctrl.__main__:main
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+  run:
+    - if: unix
+      then: __unix
+    - if: win
+      then: __win
+    - gpstime
+    - matplotlib-base
+    - networkx
+    - numpy
+    - pcaspy
+    - pydotplus
+    - pyepics
+    - python >=${{ python_min }}
+    - python-dateutil
+    - setproctitle
+    - termcolor
+
+tests:
+  # Test python imports and Python metadata
+  - python:
+      imports:
+        - guardctrl
+        - guardian
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+  # Test command line entry points
+  - requirements:
+      run:
+        - python ${{ python_min }}.*
+    script:
+      - guardian --help
+      - guardutil --help
+
+  # Run full test suite (Linux only)
+  - if: linux
+    then:
+      requirements:
+        run:
+          - bash >=4.0
+          - ezca
+          - python ${{ python_min }}.*
+      files:
+        source:
+          - test/
+      script:
+        - cd test
+        - bash -e guardian-test
+
+about:
+  summary: aLIGO Guardian
+  description: |
+    Designed by and for the Advanced LIGO project, Guardian is a flexible,
+    modular, distributed, hierarchical, state machine automation platform.
+    It is not specific to aLIGO, though; it should be useful for an large
+    or small experiment that could benefit from state-machine supervisory
+    control.
+  homepage: https://git.ligo.org/cds/guardian/
+  repository: https://git.ligo.org/cds/guardian/
+  documentation: https://docs.ligo.org/cds/guardian/
+  license: GPL-3.0-or-later
+  license_file: COPYING-GPL-3
+
+extra:
+  recipe-maintainers:
+    - duncanmmacleod
+    - evonreis
+    - jrollins
