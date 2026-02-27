@@ -14,6 +14,7 @@ source:
   patches:
     # replace most of the scripts with entry points
     - entry-points.patch
+    - fix_test.patch
     # handle guardlog per platform
     - if: win
       # don't install guardlog at all on windows (it won't work)

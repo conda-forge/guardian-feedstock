@@ -1,0 +1,13 @@
+diff --git a/test/manager b/test/manager
+index 1ff944f..f518e90 100755
+--- a/test/manager
++++ b/test/manager
+@@ -361,7 +361,7 @@ caput T1:GRD-TESTM_REQUEST C
+ sleep .1
+ cawait T1:GRD-TESTM_STATUS DONE
+ cawait T1:GRD-TEST_STATUS DONE
+-sleep .1
++sleep .5
+ caput T1:GRD-TESTM_REQUEST D
+ sleep .1
+ cawait T1:GRD-TESTM_STATUS DONE
