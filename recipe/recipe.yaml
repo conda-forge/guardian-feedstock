@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: guardian
-  version: 1.5.2
+  version: 1.5.3
 
 package:
   name: ${{ name|lower }}
@@ -10,10 +10,11 @@ package:
 
 source:
   url: https://git.ligo.org/cds/software/${{ name }}/-/archive/${{ version }}/${{ name }}-${{ version }}.tar.gz
-  sha256: fa1b62b9c64249e6735c9dfbe905cfbee81058aa37b149048df657d28ecd30ac
+  sha256: 86d4f9d61e784fe08cba71f9b47ca3c3d19828ddf32c719b4708940c1aebe011 
   patches:
     # replace most of the scripts with entry points
     - entry-points.patch
+    - fix_test.patch
     # handle guardlog per platform
     - if: win
       # don't install guardlog at all on windows (it won't work)
